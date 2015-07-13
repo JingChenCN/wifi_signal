@@ -178,7 +178,6 @@ def getWirelessInterfaces():
     WlanCloseHandle(handle)
     return interfaces_list
 
-
 def scanWlan(wireless_interface):
     handle = WlanOpenHandle()
     result = WlanScan(handle, wireless_interface.guid)
@@ -207,6 +206,7 @@ def getWirelessNetworkBssList(wireless_interface):
 def getWirelessAvailableNetworkList(wireless_interface):
     """Returns a list of WirelessNetwork objects based on the wireless
        networks availables."""
+    #print "In getWirelessAvailableNetworkList()"
     networks = []
     handle = WlanOpenHandle()
     network_list = WlanGetAvailableNetworkList(handle, wireless_interface.guid)
@@ -222,6 +222,14 @@ def getWirelessAvailableNetworkList(wireless_interface):
     WlanCloseHandle(handle)
     return networks
 
+def runWlanScan(wireless_interface,ssid=''):
+    """Scan a list of WirelessNetwork objects based on the wireless
+       networks availables."""
+    #print "In runWlanScan()"
+    handle = WlanOpenHandle()
+    WlanScan(handle, wireless_interface.guid, ssid)
+    WlanCloseHandle(handle)
+    return 0
 
 def getWirelessProfileXML(wireless_interface, profile_name):
     handle = WlanOpenHandle()
@@ -403,4 +411,3 @@ def queryInterface(wireless_interface, opcode_item):
     else:
         ext_out = None
     return result.contents, ext_out
-
