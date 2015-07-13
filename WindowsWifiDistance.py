@@ -64,5 +64,5 @@ def get_distance(ssid_in, offset):
         averaged_distance = 9999999.99
         averaged_quality = 0
         averaged_strength = -95.6
-    print averaged_distance, averaged_quality, averaged_strength
+    print averaged_distance, ' cm, ',averaged_quality, ' %, ', averaged_strength, ' dBm'
     return {"distance":averaged_distance, "quality":averaged_quality, "strength":averaged_strength}
